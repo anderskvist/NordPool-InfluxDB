@@ -1,5 +1,6 @@
 # NordPool-InfluxDB
+## nordpool custom component for home assistant
 
-Support me with a coffee https://www.buymeacoffee.com/flopp999
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/flopp999)
 
 Based on https://github.com/kipe/nordpool
