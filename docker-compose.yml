@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  nordpool-influxdb:
+    build: .
+    user: root
+    restart: "no"
+    environment:
+      INFLUXDB_HOST: "localhost"
+      INFLUXDB_PORT: "8086"
+      INFLUXDB_SSL: "False"
+      NORDPOOL_AREA: "DK1"
+      NORDPOOL_CURRENCY: "DKK"
+    logging:
+      options:
+        max-size: "30m"
