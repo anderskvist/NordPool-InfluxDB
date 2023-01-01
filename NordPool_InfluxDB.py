@@ -32,6 +32,8 @@ client = InfluxDBClient(host=host, port=port, username=username, password=passwo
 prices_spot = elspot.Prices(currency)
 jsondata = []
 
+tags = {"currency": currency, "area": area}
+
 #Today
 hour = 0
 price=prices_spot.hourly(end_date=datetime.now().date(),areas=[area])
@@ -40,7 +42,7 @@ for each,b in price["areas"][area].items():
         for each in price["areas"][area]["values"]:
             time = int(each["start"].timestamp()) # store the datetime
             hour += 1
-            jsondata.append({"measurement": measurement, "time": time, "fields": {field: float(round(each["value"]/10.0,1))}})
+            jsondata.append({"measurement": measurement, "time": time, "tags": tags, "fields": {field: float(round(each["value"]/10.0,1))}})
 #Tomorrow
 hour = 0
 price=prices_spot.hourly(areas=[area])
@@ -51,7 +53,7 @@ for each,b in price["areas"][area].items():
                 continue
             time = int(each["start"].timestamp()) # store the datetime
             hour += 1
-            jsondata.append({"measurement": measurement, "time": time, "fields": {field: float(round(each["value"]/10.0,1))}})
+            jsondata.append({"measurement": measurement, "time": time, "tags": tags, "fields": {field: float(round(each["value"]/10.0,1))}})
 
 #Store to InfluxDB
 try:
